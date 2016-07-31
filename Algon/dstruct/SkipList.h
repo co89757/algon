@@ -1,11 +1,12 @@
 #pragma once
 #include <vector>
 #include <type_traits>
-#include <string.h>
 #include <assert.h>
-#include <stdio.h>
 #include <cstdint>
-
+#define DELETE(x) do{ \
+delete (x);\
+x = 0;\
+}while(0)
 namespace colinli{
 namespace algon{
   template <typename TKey, typename TVal, int MAXHEIGHT>
@@ -21,38 +22,70 @@ namespace algon{
       Height(h)
     {
       assert(h <= MAXHEIGHT);
-      memset(Forwards, 0, MAXHEIGHT + 1);
+      for (int h = MAXHEIGHT; h > 0; --h)
+      {
+        Forwards[h] = NULL;
+      }
     }
     SkipNode(std::enable_if_t<std::is_default_constructible<TKey>::value, TKey>* dummy = 0):
       Key(TKey()),
       Value(TVal()),
       Height(1)
-      {}
+    {
+      for (int h = MAXHEIGHT; h > 0; --h)
+      {
+        Forwards[h] = NULL;
+      }
+    }
+    
     virtual ~SkipNode()
     {
-      delete[] Forwards;
     }
 
   };
-  
+ 
   template<typename TKey, typename TVal, int MAXHEIGHT>
   class SkipList
   {
   public:
     typedef SkipNode<TKey, TVal, MAXHEIGHT> TNode;
 
-    explicit SkipList(TKey tailkey) :curHeight_(1), count_(0)
+    explicit SkipList() :curHeight_(1), count_(0)
     {
       head_ = new SkipNode<TKey, TVal, MAXHEIGHT>();
-      tail_ = new SkipNode<TKey, TVal, MAXHEIGHT>(tailkey, TVal(), 1);
+      tail_ = new SkipNode<TKey, TVal, MAXHEIGHT>();
       for (int i = MAXHEIGHT; i > 0; --i)
       {
         head_->Forwards[i] = tail_;
       }
       
     }
+    virtual ~SkipList()
+    {
+      TNode* cursor = head_->Forwards[1];
+      while (cursor->Forwards[1] != tail_)
+      {
+        TNode* next = cursor->Forwards[1];
+        delete cursor;
+        cursor = next;
+      }
+      delete head_;
+      delete tail_;
+    }
+
+
+    /// <summary>
+    /// Get the value of a given key only when the key is present 
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <param name="value">The pointer to the value returned. This value will be populated only when key is found</param>
+    /// <returns>true iff the key is present in the list</returns>
     bool TryGet(TKey key, TVal* value)
     {
+      if (!value)
+      {
+        return false;
+      }
       TNode* cursor = head_;
       for (int lvl = curHeight_; lvl > 0 ; lvl--)
       {
@@ -136,9 +169,45 @@ namespace algon{
       bool haskey = TryGet(key, &v);
       return haskey;
     }
+
+    /// <summary>
+    /// Tries to remove the given key only when it is present
+    /// </summary>
+    /// <param name="key">The key.</param>
+    /// <returns>true when the key is found and successfully deleted</returns>
     bool TryRemove(TKey key)
     {
-      
+      TNode* cursor = head_;
+      TNode* update[MAXHEIGHT + 1];
+      for (int h = curHeight_ ; h > 0; --h)
+      {
+        while (cursor->Forwards[h] != tail_ && cursor->Forwards[h]->Key < key)
+        {
+          cursor = cursor->Forwards[h];
+        }
+        update[h] = cursor;
+      }
+      if (cursor->Forwards[1]->Key != key)
+      {
+        return false; 
+      }
+      cursor = cursor->Forwards[1]; // the node to delete
+      //remove the key 
+      for (int h = 1; h < curHeight_ + 1; ++h)
+      {
+        if (update[h]->Forwards[h]->Key != key)
+        {
+          break;
+        }
+        //relink the pointers
+        update[h]->Forwards[h] = cursor->Forwards[h];
+      }
+      delete cursor;
+      //update height
+      while (curHeight_ > 1 && head_->Forwards[curHeight_] == tail_)
+        curHeight_--;
+
+      return true;
     }
     size_t Count() const
     {
@@ -161,12 +230,15 @@ namespace algon{
     SkipNode<TKey,TVal,MAXHEIGHT>* tail_;
     uint8_t curHeight_;
     size_t count_;
+
+
   protected:
-    double getUniformRandom()
+    static double getUniformRandom()
     {
       return rand() / double(RAND_MAX);
     }
-    int getRandomHeight()
+
+    static int getRandomHeight()
     {
       double p = 0.5;
       int level = 1;

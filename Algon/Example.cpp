@@ -6,7 +6,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-  SkipList<int, std::string, 16> list(1000);
+  SkipList<int, std::string, 16> list;
   list.Put(1, "one");
   bool haskey = list.HasKey(1);
   string v;
