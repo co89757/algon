@@ -3,7 +3,6 @@
 #include <memory>
 #include <unordered_map>
 #include <initializer_list>
-#include <stdexcept>
 #include <assert.h>
 namespace colinli {
 namespace algon {
@@ -63,10 +62,7 @@ namespace algon {
     /// <returns>the pointer to root of the set to which x belongs</returns>
     TKey* FindSet(TKey x)
     {
-      if (parent_.count(x) == 0)
-      {
-        return nullptr;
-      }
+      assert(parent_.count(x) != 0);
       while (parent_[x] != x)
       {
         x = *FindSet(parent_[x]);
