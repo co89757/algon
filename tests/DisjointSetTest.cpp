@@ -34,7 +34,9 @@ namespace tests
 
     TEST_METHOD(TestMultiUnion)
     {
-      iset.Union(1, 2, 3, 4);
+      iset.Union(1, 2);
+      iset.Union(3, 2);
+      iset.Union(3, 4);
       iset.Union(2, 7);
       Assert::IsTrue(iset.Connected(1, 7));
       Assert::IsTrue(iset.Connected(4, 7));

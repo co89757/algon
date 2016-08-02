@@ -39,16 +39,6 @@ namespace algon {
     {
       linkRoot(*FindSet(x), *FindSet(y));
     }
-    
-    /// <summary>
-    /// Unions more than two elements
-    /// </summary>
-    template <typename TKey, typename... TRest >
-    void Union(TKey x, TKey y, TRest... rest)
-    {
-      Union(x, y);
-      Union(y, rest...);
-    }
 
     bool Contains(TKey x) const 
     {
