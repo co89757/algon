@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="dstruct\DisjointSet.h" />
     <ClInclude Include="dstruct\SkipList.h" />
   </ItemGroup>
   <ItemGroup>
