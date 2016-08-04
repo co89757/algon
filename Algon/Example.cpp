@@ -2,24 +2,34 @@
 #include "dstruct/DisjointSet.h"
 #include <iostream>
 #include <string>
+#include <stdio.h>
+#include "utility/Exception.h"
+#include "utility/FileIO.h"
 using namespace colinli::algon;
 using namespace std;
+using namespace colinli;
+
+void test_fileio() {
+  file::ReadableFile file("rd.txt");
+  string line;
+  while (file.ReadLine(line)) {
+    cout << line << "\n";
+  }
+
+}
+
+void test_except() {
+  
+    Throwf<InvalidDataException>("a sample error is thrown, the x=%d", 10);
+   
+}
 
 int main(int argc, char* argv[])
 {
-  SkipList<int, std::string, 16> list;
-  list.Put(1, "one");
-  bool haskey = list.HasKey(1);
-  string v;
-  if (list.TryGet(1,&v))
-  {
-    cout << "the val = "<< v << "\n";
+  try{
+    test_fileio();
+  } catch (std::exception& e) {
+    cout << e.what() << "\n";
   }
-  DisjointSets<string> set;
-  set.Add("1");
-  set.Add("2");
-  set.Add("3");
-  set.Union("2", "3");
-  auto r = set.Connected("2", "3");
-  cout << "done\n";
+  system("pause");
 }

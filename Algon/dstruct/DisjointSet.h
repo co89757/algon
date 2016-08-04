@@ -8,8 +8,6 @@ namespace colinli {
 namespace algon {
 
   template<typename T>
-  using uPtr = std::shared_ptr<T>;
-  template<typename T>
   using Set = std::set < T > ;
   template <typename K, typename V>
   using HashMap = std::unordered_map < K, V > ;

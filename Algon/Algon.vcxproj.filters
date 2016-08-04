@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Shared">
+      <UniqueIdentifier>{8b685def-f404-4a43-b2f9-c87a651afe4f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dstruct\SkipList.h">
@@ -21,10 +24,39 @@
     <ClInclude Include="dstruct\DisjointSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="dstruct\Heap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\FileIO.h">
+      <Filter>Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\Buffer.h">
+      <Filter>Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\Exception.h">
+      <Filter>Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="utility\Util.h">
+      <Filter>Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Shared</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Example.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="utility\FileIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="utility\Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="rd.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
