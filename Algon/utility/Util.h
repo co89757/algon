@@ -15,7 +15,11 @@ namespace colinli {
   uint32_t sdigits10(int64_t v);
   int ll2string(char *dst, size_t dstlen, long long svalue);
 
-template <typename TSrc>
+
+  /// <summary>
+  /// Everything conversion to string
+  /// </summary>
+  template <typename TSrc>
 std::string ToStr(TSrc src) {
   std::stringstream ss;
   ss << src;
@@ -74,6 +78,5 @@ std::string ToStr(TSrc src, TRest&&... rest) {
   r += ToStr(std::forward<TRest>(rest)...);
   return r;
 }
-
 
 }// end of colinli ns 

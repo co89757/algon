@@ -3,20 +3,21 @@
 #include "Util.h"
 #include <cstdarg>
 
-namespace colinli {
-  class FileIOException : std::runtime_error
-  {
-  public:
-    explicit FileIOException(const char* m) : runtime_error(m){}
-    virtual ~FileIOException(){}
-  };
+#define NEW_RTEXCEPTION(E) class E: public std::runtime_error\
+    {\
+  public:\
+   explicit E(const char* m): runtime_error(m){}\
+   explicit E(const std::string& m): runtime_error(m){}\
+   virtual ~E(){}\
+    }
 
-  class InvalidDataException : public std::logic_error
-  {
-  public:
-    explicit InvalidDataException(const char* m) :logic_error(m){}
-    virtual ~InvalidDataException(){}
-  };
+namespace colinli {
+
+  NEW_RTEXCEPTION(NullArgumentError);
+
+  NEW_RTEXCEPTION(FileIOException);
+
+  NEW_RTEXCEPTION(InvalidDataException);
 
   class ArgumentNullException : public std::invalid_argument
   {

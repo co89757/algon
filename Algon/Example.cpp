@@ -10,7 +10,7 @@ using namespace std;
 using namespace colinli;
 
 void test_fileio() {
-  file::ReadableFile file("rd.txt");
+  file::ReadableFile file("r4d.txt");
   string line;
   while (file.ReadLine(line)) {
     cout << line << "\n";
@@ -18,9 +18,14 @@ void test_fileio() {
 
 }
 
+void ThrowE(){
+  Throwf<InvalidDataException>("a sample error is thrown, the x=%d", 10);
+
+}
+
 void test_except() {
   
-    Throwf<InvalidDataException>("a sample error is thrown, the x=%d", 10);
+  ThrowE();
    
 }
 
@@ -28,7 +33,7 @@ int main(int argc, char* argv[])
 {
   try{
     test_fileio();
-  } catch (std::exception& e) {
+  } catch (exception& e) {
     cout << e.what() << "\n";
   }
   system("pause");
