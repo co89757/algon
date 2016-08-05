@@ -16,7 +16,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="algorithm\Numeric.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="dstruct\DisjointSet.h" />
     <ClInclude Include="dstruct\Heap.h" />
@@ -74,6 +75,7 @@
     <ClInclude Include="utility\Util.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="algorithm\Numeric.cpp" />
     <ClCompile Include="Example.cpp" />
     <ClCompile Include="utility\FileIO.cpp" />
     <ClCompile Include="utility\Util.cpp" />
