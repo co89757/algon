@@ -11,4 +11,6 @@
 namespace colinli {
 template<class T>
 using uPtr = std::unique_ptr<T>;
+template<class T>
+using sPtr = std::shared_ptr<T>;
 }

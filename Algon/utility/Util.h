@@ -15,6 +15,19 @@ namespace colinli {
   uint32_t sdigits10(int64_t v);
   int ll2string(char *dst, size_t dstlen, long long svalue);
 
+  
+  /// <summary>
+  /// Identity functor 
+  /// </summary>
+  struct identity {
+    template<typename U>
+    constexpr auto operator()(U&& v) const noexcept
+      -> decltype(std::forward<U>(v))
+    {
+      return std::forward<U>(v);
+    }
+  };
+
 
   /// <summary>
   /// Everything conversion to string

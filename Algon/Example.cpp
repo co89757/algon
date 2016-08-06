@@ -10,12 +10,8 @@ using namespace std;
 using namespace colinli;
 
 void test_fileio() {
-  file::ReadableFile file("r4d.txt");
-  string line;
-  while (file.ReadLine(line)) {
-    cout << line << "\n";
-  }
-
+  auto f = fopen("ii.r", "r");
+  CHECK_THROW(f != NULL, FileIOException);
 }
 
 void ThrowE(){

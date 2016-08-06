@@ -67,6 +67,7 @@
     <ClInclude Include="common.h" />
     <ClInclude Include="dstruct\DisjointSet.h" />
     <ClInclude Include="dstruct\Heap.h" />
+    <ClInclude Include="dstruct\SegmentTree.h" />
     <ClInclude Include="dstruct\SkipList.h" />
     <ClInclude Include="utility\Buffer.h" />
     <ClInclude Include="utility\Exception.h" />

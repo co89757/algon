@@ -1,8 +1,6 @@
 #include "Util.h"
 #include <math.h>
 #include <stdio.h>
-#include <string.h>
-#include <cstdint>
 
 namespace colinli{
   /* Return the number of digits of 'v' when converted to string in radix 10.
