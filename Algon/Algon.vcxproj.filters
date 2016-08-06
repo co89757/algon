@@ -43,6 +43,9 @@
       <Filter>Shared</Filter>
     </ClInclude>
     <ClInclude Include="dstruct\SegmentTree.h">
+    <Filter> Header Files </Filter>
+    </ClInclude>
+    <ClInclude Include="algorithm\Numeric.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="utility\Util.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="algorithm\Numeric.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
