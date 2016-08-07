@@ -1,7 +1,7 @@
 #include "Util.h"
 #include <math.h>
 #include <stdio.h>
-
+#include "../common.h"
 namespace colinli{
   /* Return the number of digits of 'v' when converted to string in radix 10.
   * See ll2string() for more information. */
@@ -108,23 +108,23 @@ namespace colinli{
 
   int  d2string(char* buf, size_t len, double value) {
     if (isnan(value)) {
-      len = _snprintf(buf, len, "nan");
+      len = snprintf(buf, len, "nan");
     }
     else if (isinf(value)) {
       if (value < 0)
-        len = _snprintf(buf, len, "-inf");
+        len = snprintf(buf, len, "-inf");
       else
-        len = _snprintf(buf, len, "inf");
+        len = snprintf(buf, len, "inf");
     }
     else if (value == 0) {
       /* See: http://en.wikipedia.org/wiki/Signed_zero, "Comparisons". */
       if (1.0 / value < 0)
-        len = _snprintf(buf, len, "-0");
+        len = snprintf(buf, len, "-0");
       else
-        len = _snprintf(buf, len, "0");
+        len = snprintf(buf, len, "0");
     }
     else {
-        len = _snprintf(buf, len, "%.17g", value);
+        len = snprintf(buf, len, "%.17g", value);
     }
 
     return len;

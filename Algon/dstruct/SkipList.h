@@ -3,6 +3,7 @@
 #include <type_traits>
 #include <assert.h>
 #include <cstdint>
+#include "../common.h"
 #define DELETE(x) do{ \
 delete (x);\
 x = 0;\
@@ -21,12 +22,13 @@ struct SkipNode
   SkipNode(TKey k, TVal v, size_t h) :
     Key(k),
     Value(v),
-    Height(h) {
+    Height(h) 
+    {
     assert(h <= MAXHEIGHT);
     for (int h = MAXHEIGHT; h > 0; --h) {
       Forwards[h] = NULL;
     }
-  }
+   }
 
   SkipNode(std::enable_if_t<std::is_default_constructible<TKey>::value, TKey>* dummy = 0):
     Key(TKey()),

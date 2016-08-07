@@ -6,7 +6,7 @@
 #include <functional>
 #include <type_traits>
 #include <cassert>
-
+#include "../common.h"
 #define PARENT(i) ((i)>>1)
 #define LCHILD(i) ((i)<<1)
 

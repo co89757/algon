@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <initializer_list>
 #include <assert.h>
+#include "../common.h"
 namespace colinli {
 namespace algon {
 
