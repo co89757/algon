@@ -1,10 +1,10 @@
-#include "dstruct/SkipList.h"
 #include "dstruct/DisjointSet.h"
 #include <iostream>
 #include <string>
 #include <stdio.h>
 #include "utility/Exception.h"
 #include "utility/FileIO.h"
+#include "dstruct/SkipList.h"
 using namespace colinli::algon;
 using namespace std;
 using namespace colinli;

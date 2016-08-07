@@ -1,6 +1,7 @@
 #pragma once
 #include <stdlib.h>
 #include <stdint.h>
+#include "../common.h"
 // #trailing zeros for n!
 int TrailingZerosFactorial(uint32_t n);
 

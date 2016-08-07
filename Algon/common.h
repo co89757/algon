@@ -8,6 +8,15 @@
 
 #define NAMEOF(x) #x 
 
+ #if defined(__GNUC__) || defined(__linux__) 
+ #include <stddef.h>
+ #include <stdlib.h>
+ #include <stdint.h>
+ #include <limits.h>
+ #include <string.h>
+ #endif
+
+
 namespace colinli {
 template<class T>
 using uPtr = std::unique_ptr<T>;
