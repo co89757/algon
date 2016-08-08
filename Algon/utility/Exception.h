@@ -114,11 +114,11 @@ namespace colinli {
   public:
     explicit Exception(const char* m):msg(m) {}
     explicit Exception(const std::string& m):msg(m) {}
-    virtual const char* what() override {
+    const char* what() const override {
       return msg.c_str();
     }
     virtual void PrintTrace() { _printtrace(); }
-    virtual std::string& StackTrace() { //TODO }
+    virtual std::string& StackTrace() {}
     virtual ~Exception(){}
   private:
     std::string msg; 

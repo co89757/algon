@@ -8,7 +8,7 @@ int TrailingZerosFactorial(uint32_t n);
 inline
 bool IsPowerOf2(size_t v)
 {
-  return v && (v & (v - 1) == 0);
+  return (v) && (v & (v - 1)) == 0;
 }
 
 inline
