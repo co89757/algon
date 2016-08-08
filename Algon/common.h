@@ -8,7 +8,8 @@
 
 #define NAMEOF(x) #x 
 
- #if defined(__GNUC__) || defined(__linux__) 
+ #if defined(__GNUC__) || defined(__linux__) || defined(__gnu_linux__)
+ #define ALGON_IS_GNU_LINUX
  #include <stddef.h>
  #include <stdlib.h>
  #include <stdint.h>
