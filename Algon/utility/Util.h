@@ -2,6 +2,8 @@
 #include <string>
 #include <sstream>
 #include <cstdint>
+#include <functional>
+#include <utility>
 #include "../common.h"
 namespace colinli {
 
@@ -79,5 +81,37 @@ std::string ToStr(TSrc src, TRest&&... rest) {
   r += ToStr(std::forward<TRest>(rest)...);
   return r;
 }
+
+// Noncopyable mixin class 
+class NonCopyable
+{
+protected:
+  NonCopyable(){}
+  ~NonCopyable(){}
+private:
+  NonCopyable(const NonCopyable&);
+  NonCopyable& operator=(const NonCopyable&);
+};
+
+ 
+
+/// <summary>
+/// Singleton mixin, should be thread-safe
+/// </summary>
+template <typename Child>
+class Singleton : private NonCopyable
+{
+public:  
+  static Child& Instance( )
+  {
+    static Child child;
+    return child;
+  }
+protected:
+  Singleton() = default;
+  virtual ~Singleton(){}
+};
+
+ 
 
 }// end of colinli ns 
